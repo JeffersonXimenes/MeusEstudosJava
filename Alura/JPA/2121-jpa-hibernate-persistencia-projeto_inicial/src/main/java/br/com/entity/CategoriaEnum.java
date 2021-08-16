@@ -1,6 +1,6 @@
 package br.com.entity;
 
-public enum Categoria {
+public enum CategoriaEnum {
 	
 	CELULARES,
 	INFORMATICA,
