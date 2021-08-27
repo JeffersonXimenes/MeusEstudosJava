@@ -11,11 +11,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_categoria")
+@Data
 public class CategoriaEntity {
 	
 	@Id
@@ -25,9 +25,32 @@ public class CategoriaEntity {
 	
 	@Column(name = "nome")
 	private String nome;
+	
+	public CategoriaEntity () {}
 
 	public CategoriaEntity(String nome) {
 		super();
 		this.nome = nome;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	@Override
+	public String toString() {
+		return "CategoriaEntity [id=" + id + ", nome=" + nome + "]";
 	}
 }

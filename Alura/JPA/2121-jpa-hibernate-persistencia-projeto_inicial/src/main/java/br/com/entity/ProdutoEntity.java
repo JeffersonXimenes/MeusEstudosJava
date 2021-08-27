@@ -43,11 +43,19 @@ public class ProdutoEntity {
 	@JoinColumn(name = "id_categoria")
 	private CategoriaEntity categoriaEntity;
 	
+	public ProdutoEntity () {}
+	
 	public ProdutoEntity(String nome, String descricao, BigDecimal preco, CategoriaEntity categoriaEntity) {
 		super();
 		this.nome = nome;
 		this.descricao = descricao;
 		this.preco = preco;
 		this.categoriaEntity = categoriaEntity;
+	}
+
+	@Override
+	public String toString() {
+		return "ProdutoEntity [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", preco=" + preco
+				+ ", dataCadastro=" + dataCadastro + ", categoriaEntity=" + categoriaEntity + "]";
 	}
 }

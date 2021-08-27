@@ -9,4 +9,8 @@ public class GenericDAO {
 	public void cadastrar(Object object) {
 		this.em.persist(object);
 	}
+	
+	public void atualizar(Object object) {
+		this.em.merge(object);
+	}
 }

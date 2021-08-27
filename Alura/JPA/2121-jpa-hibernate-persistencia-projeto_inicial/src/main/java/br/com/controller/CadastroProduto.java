@@ -1,6 +1,7 @@
 package br.com.controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -11,20 +12,35 @@ import br.com.entity.ProdutoEntity;
 import br.com.util.JPAUtil;
 
 public class CadastroProduto {
+	
 	public static void main(String[] args) {
+		cadastrarProduto();
+		
+		EntityManager em = JPAUtil.getEntityManager();
+		ProdutoDAO produtoDAO = new ProdutoDAO(em);
+		
+		ProdutoEntity produto = produtoDAO.buscarProduto(1l);
+		List<ProdutoEntity> listarTodos = produtoDAO.buscarTodos();
 
+		System.out.println(produto.toString());
+		
+		listarTodos.forEach(listar -> System.out.println(listar.toString()));
+		
+	}
+
+	private static void cadastrarProduto() {
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDAO produtoDAO = new ProdutoDAO(em);
 		CategoriaDAO categoriaDAO = new CategoriaDAO(em);
 		
-		CategoriaEntity categoria = new CategoriaEntity("Celular");
-		ProdutoEntity celular = new ProdutoEntity("Samsung S10 Plus", "Mió celular, naõ tem pra ninguém >>", new BigDecimal("800"), categoria);
-		
-		categoriaDAO.cadastrar(categoria);
-		produtoDAO.cadastrar(celular);
+		CategoriaEntity categoriaCadastrar = new CategoriaEntity("Celular");
+		ProdutoEntity celular = new ProdutoEntity("Samsung S10 Plus", "Mió celular, naõ tem pra ninguém >>", new BigDecimal("800"), categoriaCadastrar);
 		
 		em.getTransaction().begin();
-		em.persist(celular);
+		
+		categoriaDAO.cadastrar(categoriaCadastrar);
+		produtoDAO.cadastrar(celular);
+		
 		em.getTransaction().commit();
 		em.close();
 	}	
