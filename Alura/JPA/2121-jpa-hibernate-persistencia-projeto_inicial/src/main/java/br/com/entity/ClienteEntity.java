@@ -1,6 +1,6 @@
 package br.com.entity;
 
-import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,15 +22,11 @@ public class ClienteEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "nome")
-	private String nome;
-
-	@Column(name = "descricao")
-	private String cpf;
-
+	@Embedded
+	private DadosPessoais dadosPessoais;
+	
 	public ClienteEntity(String nome, String cpf) {
 		super();
-		this.nome = nome;
-		this.cpf = cpf;
+		this.dadosPessoais = new DadosPessoais(nome, cpf);
 	}
 }
