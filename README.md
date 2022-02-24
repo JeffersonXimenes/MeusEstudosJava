@@ -4,6 +4,9 @@
 ### Tópicos 
 + Alura
 	+ JPA (básico ao intermediário)
+	+ Design Patterns
+	+ Java Collections
+	+ Recursos JAVA 8
   
 ### Versão Documento 
 __V1.0.0__
